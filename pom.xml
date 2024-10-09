@@ -157,7 +157,7 @@
 				<configuration>
 					<suiteXmlFiles>
 						<suiteXmlFile>src/test/resources/AccountModuleRegressionSuite.xml</suiteXmlFile>
-						
+						<suiteXmlFile>src/test/resources/ContactModuleRegressionSuite.xml</suiteXmlFile>
 					</suiteXmlFiles>
 					<systemPropertyVariables>
 						<appURL>${url}</appURL>
