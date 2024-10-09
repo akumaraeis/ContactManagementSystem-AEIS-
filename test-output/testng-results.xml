@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2024-10-08T11:30:06 IST" name="Suite" finished-at="2024-10-08T11:33:36 IST" duration-ms="209772">
+    <groups>
+    </groups>
+    <test started-at="2024-10-08T11:30:06 IST" name="Test1" finished-at="2024-10-08T11:33:36 IST" duration-ms="209772">
+      <class name="com.cms.testcases.Contact_E2E_Flow4">
+        <test-method is-config="true" signature="openUrl(java.lang.String)[pri:0, instance:com.cms.testcases.Contact_E2E_Flow4@44c03695]" started-at="2024-10-08T11:30:06 IST" name="openUrl" finished-at="2024-10-08T11:30:10 IST" duration-ms="3410" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openUrl -->
+        <test-method is-config="true" signature="LaunchUrl()[pri:0, instance:com.cms.testcases.Contact_E2E_Flow4@44c03695]" started-at="2024-10-08T11:30:10 IST" name="LaunchUrl" finished-at="2024-10-08T11:30:19 IST" duration-ms="8954" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LaunchUrl -->
+        <test-method signature="VerifyAddNewContactFunctionality()[pri:1, instance:com.cms.testcases.Contact_E2E_Flow4@44c03695]" started-at="2024-10-08T11:30:19 IST" name="VerifyAddNewContactFunctionality" finished-at="2024-10-08T11:33:10 IST" duration-ms="171604" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- VerifyAddNewContactFunctionality -->
+        <test-method is-config="true" signature="closeURL()[pri:0, instance:com.cms.testcases.Contact_E2E_Flow4@44c03695]" started-at="2024-10-08T11:33:11 IST" name="closeURL" finished-at="2024-10-08T11:33:11 IST" duration-ms="23" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeURL -->
+        <test-method is-config="true" signature="LaunchUrl()[pri:0, instance:com.cms.testcases.Contact_E2E_Flow4@44c03695]" started-at="2024-10-08T11:33:11 IST" name="LaunchUrl" finished-at="2024-10-08T11:33:17 IST" duration-ms="6285" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LaunchUrl -->
+        <test-method signature="GetContact()[pri:2, instance:com.cms.testcases.Contact_E2E_Flow4@44c03695]" started-at="2024-10-08T11:33:17 IST" name="GetContact" finished-at="2024-10-08T11:33:21 IST" depends-on-methods="com.cms.testcases.Contact_E2E_Flow4.VerifyAddNewContactFunctionality" duration-ms="3597" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- GetContact -->
+        <test-method is-config="true" signature="closeURL()[pri:0, instance:com.cms.testcases.Contact_E2E_Flow4@44c03695]" started-at="2024-10-08T11:33:21 IST" name="closeURL" finished-at="2024-10-08T11:33:21 IST" duration-ms="126" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeURL -->
+        <test-method is-config="true" signature="LaunchUrl()[pri:0, instance:com.cms.testcases.Contact_E2E_Flow4@44c03695]" started-at="2024-10-08T11:33:21 IST" name="LaunchUrl" finished-at="2024-10-08T11:33:27 IST" duration-ms="6057" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LaunchUrl -->
+        <test-method signature="DeleteContact()[pri:3, instance:com.cms.testcases.Contact_E2E_Flow4@44c03695]" started-at="2024-10-08T11:33:27 IST" name="DeleteContact" finished-at="2024-10-08T11:33:28 IST" depends-on-methods="com.cms.testcases.Contact_E2E_Flow4.GetContact" duration-ms="1024" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DeleteContact -->
+        <test-method is-config="true" signature="closeURL()[pri:0, instance:com.cms.testcases.Contact_E2E_Flow4@44c03695]" started-at="2024-10-08T11:33:29 IST" name="closeURL" finished-at="2024-10-08T11:33:29 IST" duration-ms="151" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeURL -->
+        <test-method is-config="true" signature="LaunchUrl()[pri:0, instance:com.cms.testcases.Contact_E2E_Flow4@44c03695]" started-at="2024-10-08T11:33:29 IST" name="LaunchUrl" finished-at="2024-10-08T11:33:35 IST" duration-ms="6205" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LaunchUrl -->
+        <test-method signature="AllValidationCheck()[pri:5, instance:com.cms.testcases.Contact_E2E_Flow4@44c03695]" started-at="2024-10-08T11:33:35 IST" name="AllValidationCheck" finished-at="2024-10-08T11:33:35 IST" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AllValidationCheck -->
+        <test-method is-config="true" signature="closeURL()[pri:0, instance:com.cms.testcases.Contact_E2E_Flow4@44c03695]" started-at="2024-10-08T11:33:35 IST" name="closeURL" finished-at="2024-10-08T11:33:35 IST" duration-ms="111" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeURL -->
+        <test-method is-config="true" signature="closebrowser()[pri:0, instance:com.cms.testcases.Contact_E2E_Flow4@44c03695]" started-at="2024-10-08T11:33:35 IST" name="closebrowser" finished-at="2024-10-08T11:33:36 IST" duration-ms="431" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closebrowser -->
+      </class> <!-- com.cms.testcases.Contact_E2E_Flow4 -->
+    </test> <!-- Test1 -->
+  </suite> <!-- Suite -->
+</testng-results>
