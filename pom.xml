@@ -155,9 +155,14 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.0.0-M4</version>
 				<configuration>
-					<suiteXmlFiles>
-						<suiteXmlFile>src/test/resources/*.xml</suiteXmlFile>
-					</suiteXmlFiles>
+					 <configuration>
+                <suiteXmlFiles>
+                    <suiteXmlFile>src/test/resources</suiteXmlFile>
+                </suiteXmlFiles>
+                <includes>
+                    <include>**/*.xml</include> <!-- Includes all XML files in resources and subdirectories -->
+                </includes>
+            </configuration>
 					<systemPropertyVariables>
 						<appURL>${url}</appURL>
 					</systemPropertyVariables>
