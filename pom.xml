@@ -155,14 +155,12 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.0.0-M4</version>
 				<configuration>
-					 <configuration>
-                <suiteXmlFiles>
-                    <suiteXmlFile>src/test/resources</suiteXmlFile>
-                </suiteXmlFiles>
-                <includes>
-                    <include>**/*.xml</include> <!-- Includes all XML files in resources and subdirectories -->
-                </includes>
-            </configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>src/test/resources/AccountModuleRegressionSuite.xml</suiteXmlFile>
+						<suiteXmlFile>src/test/resources/ContactModuleRegressionSuite.xml</suiteXmlFile>
+						<suiteXmlFile>src/test/resources/ProjectModuleRegressionSuite.xml</suiteXmlFile>
+						<suiteXmlFile>src/test/resources/TeamModuleRegressionSuite.xml</suiteXmlFile>
+					</suiteXmlFiles>
 					<systemPropertyVariables>
 						<appURL>${url}</appURL>
 					</systemPropertyVariables>
