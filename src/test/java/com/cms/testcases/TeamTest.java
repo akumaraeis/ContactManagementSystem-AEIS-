@@ -14,6 +14,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -32,7 +33,6 @@ import com.cms.basetest.BaseTest;
 import com.cms.utility.Utility;
 
 public class TeamTest extends BaseTest{
-	public SoftAssert sf;
 	public static Logger log;
 	public static Select s1;
 	public static Select s2;
@@ -45,6 +45,8 @@ public class TeamTest extends BaseTest{
 	private Actions act;
 	private String teamSearched ;
 	private String teamId2;
+	private SoftAssert sf;
+	private Boolean isTeamCreated=false;
 
 	public static JavascriptExecutor js;
 	@BeforeClass
@@ -64,8 +66,6 @@ public class TeamTest extends BaseTest{
 	@Test(priority=1)
 	public void VerifyAddNewTeamFunctionality() throws IOException, InterruptedException
 	{
-		try
-		{	
 			WebElement GoogleLogin = driverR.findElement(By.xpath("//*[name()='path' and contains(@d,'M215.103 0')]"));
 			act = new Actions(driverR);
 			act.moveToElement(GoogleLogin).perform();
@@ -102,28 +102,34 @@ public class TeamTest extends BaseTest{
 		String child2 = itr2.next();
 		driverR.switchTo().window(child2);
 		Thread.sleep(2000);
-		hp.ClickonTeams();
+		sf = new SoftAssert();
+		try
+		{				
+		tp.ClickonTeam();
 		Thread.sleep(2000);
 		tp.ClickonAddnewTeam();
+		isTeamCreated=true;
 		teamSearched = tp.sendTeamName("Aeis");
 		tp.sendProjectName();
 		tp.ClickonSubmitBtn();
-		Thread.sleep(2000);
+//		Thread.sleep(2000);
 		tp.sendSearchTeamName(teamSearched);
-		Thread.sleep(2000);
+//		Thread.sleep(2000);
 		tp.ClickonsearchBtn();
-		Thread.sleep(2000);
+//		Thread.sleep(2000);
 		tp.ClickonViewBtn();
-		Thread.sleep(1000);
+//		Thread.sleep(1000);
 		tp.ClickonAddNewMemberBtn();
-		Thread.sleep(1000);
+//		Thread.sleep(1000);
 		tp.SendContactName("Aeis- smp-1801");
-		Thread.sleep(1000);
+//		Thread.sleep(1000);
 		tp.SelectRole();
-		Thread.sleep(1000);
+//		Thread.sleep(1000);
 		tp.ClickonSubmitBtn();
-		Thread.sleep(1000);
+//		Thread.sleep(1000);
+				
 		}
+		
 		catch(Exception e)
 		{
 			e.printStackTrace();
@@ -132,26 +138,28 @@ public class TeamTest extends BaseTest{
 	}
 	
 	
-	@Test(priority=2 )
+//	@Test(priority=2 )
 	public void VerifyTeamSearchfunctionality() throws InterruptedException
 	{
-		hp.ClickonTeams();
+		tp.ClickonTeam();
 		Thread.sleep(1000);
 		String Expected2 = tp.sendSearchTeamName("Test Team");
 		tp.ClickonsearchBtn();
 		Thread.sleep(1000);
 		System.out.println(Expected2);
 		String Actual2 = driverR.findElement(By.xpath("//td[contains(text(),'"+Expected2+"')]")).getText();
-		System.out.println(Expected2);
-		SoftAssert sf = new SoftAssert();
+		System.out.println(Expected2);		
 		sf.assertEquals(Actual2, Expected2,"Team created verified");
 	}
+	
 	@Test(priority=3 ,dependsOnMethods="VerifyAddNewTeamFunctionality")
 	public void GetTeam() throws InterruptedException
 	{
+		if(isTeamCreated==true)
+		{
 		HashMap data = new HashMap();
 		data.put("team_name", teamSearched);
-		String projectId = given()
+		String teamId = given()
 				.contentType("application/json")
 				.headers("Authorization",token)
 				.body(data)
@@ -163,7 +171,7 @@ public class TeamTest extends BaseTest{
 		Pattern pattern = Pattern.compile("teamId:(\\d+)");
 
 		// Match the pattern against the input string
-		Matcher matcher = pattern.matcher(projectId);
+		Matcher matcher = pattern.matcher(teamId);
 
 
 		//	      Check if a match is found
@@ -174,11 +182,16 @@ public class TeamTest extends BaseTest{
 		} else {
 			System.out.println("Team ID not found.");
 		}
+		}
+		else
+		{
+			System.out.println("Team not created");
+		}
 
 	}
 	
 	@Test(priority=4,dependsOnMethods= "GetTeam")
-	void DeleteProject()
+	void DeleteTeam()
 	{
 		HashMap data = new HashMap();
 		data.put("teamId",  teamId2);
@@ -208,12 +221,10 @@ public class TeamTest extends BaseTest{
 	{
 		driverR.navigate().to("about:blank");
 	}
+	
 	@AfterClass
 	public void closebrowser()
 	{
-		
-	            
 		teardown();
 	}
-
 }

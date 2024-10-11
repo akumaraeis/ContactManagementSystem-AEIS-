@@ -49,7 +49,11 @@ public class ProjectTest extends BaseTest{
 	private String token;
 	private Actions act;
 	private  String projectId2;
-
+	private String teamSearched;
+	private String teamId2;
+	private boolean isTeamCreated =false;
+	
+	
 	@BeforeClass
 	@Parameters("browser")
 	public void openUrl(String browser) throws IOException
@@ -67,8 +71,6 @@ public class ProjectTest extends BaseTest{
 	@Test(priority=1)
 	public void VerifyAddNewProjectFunctionality() throws IOException, InterruptedException
 	{
-		try
-		{	
 			WebElement GoogleLogin = driverR.findElement(By.xpath("//*[name()='path' and contains(@d,'M215.103 0')]"));
 			act = new Actions(driverR);
 			act.moveToElement(GoogleLogin).perform();
@@ -110,6 +112,8 @@ public class ProjectTest extends BaseTest{
 			String child2 = itr2.next();
 			driverR.switchTo().window(child2);
 			Thread.sleep(2000);
+			try
+			{	
 			hp.ClickonRunningProjects();
 			Thread.sleep(2000);
 			pp.ClickonAddnewProject();
@@ -146,8 +150,9 @@ public class ProjectTest extends BaseTest{
 			Thread.sleep(2000);
 			pp.ClickOnAddNewTeamBtn();
 			Thread.sleep(1000);
-			tp.sendTeamName("aeis");
+			teamSearched = tp.sendTeamName("aeis");
 			Thread.sleep(1000);
+			isTeamCreated=true;
 			tp.ClickonSubmitBtn();
 			Thread.sleep(1000);
 			WebElement AddField = driverR.findElement(By.xpath("//select[@id='additionalFieldId']"));
@@ -198,6 +203,7 @@ public class ProjectTest extends BaseTest{
 			e.printStackTrace();
 		}
 	}
+	
 	@Test(priority=3 ,dependsOnMethods="VerifyAddNewProjectFunctionality")
 	public void GetProject() throws InterruptedException
 	{
@@ -249,7 +255,65 @@ public class ProjectTest extends BaseTest{
 		System.out.println("******Created projectId deletion Functionality is verified************");
 
 	}
-	@Test(priority=5)
+	@Test(priority=5 ,dependsOnMethods="VerifyAddNewProjectFunctionality")
+	public void GetTeam() throws InterruptedException
+	{
+		if(isTeamCreated==true)
+		{
+		HashMap data = new HashMap();
+		data.put("team_name", teamSearched);
+		String teamId = given()
+				.contentType("application/json")
+				.headers("Authorization",token)
+				.body(data)
+
+				.when()
+				.get("http://34.131.1.179/api/v1/teams")
+				.jsonPath().getString("data");
+
+		Pattern pattern = Pattern.compile("teamId:(\\d+)");
+
+		// Match the pattern against the input string
+		Matcher matcher = pattern.matcher(teamId);
+
+
+		//	      Check if a match is found
+		if (matcher.find()) {
+			// Extract the value of contact_id
+			 teamId2 = matcher.group(1);
+			System.out.println("Team ID: " + teamId2);
+		} else {
+			System.out.println("Team ID not found.");
+		}
+		}
+		else
+		{
+			System.out.println("Team not created");
+		}
+
+	}
+	
+	@Test(priority=6,dependsOnMethods= "GetTeam")
+	void DeleteTeam()
+	{
+		HashMap data = new HashMap();
+		data.put("teamId",  teamId2);
+		System.out.println("found TeamId detail for delete functions : "+teamId2);
+		given()
+		.contentType("application/json")
+		.headers("Authorization",token)
+		.body(data)
+
+		.when()
+		.post("http://34.131.1.179/api/v1/teams/delete-team")
+
+		.then()
+		.statusCode(200)
+		.log().all();
+		System.out.println("******Created TeamId deletion Functionality is verified************");
+
+	}
+	@Test(priority=7)
     public void AllValidationCheck()
     {
 		sf.assertAll();

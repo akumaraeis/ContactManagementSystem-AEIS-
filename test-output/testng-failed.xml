@@ -4,20 +4,18 @@
   <listeners>
     <listener class-name="com.cms.listener.Listener"/>
   </listeners>
-  <test thread-count="5" name="Test1(failed)">
+  <test thread-count="5" name="Test(failed)">
     <parameter name="browser" value="chrome"/>
     <classes>
-      <class name="com.cms.testcases.Contact_E2E_Flow4">
+      <class name="com.cms.testcases.TeamTest">
         <methods>
-          <include name="VerifyAddNewContactFunctionality"/>
-          <include name="DeleteContact"/>
-          <include name="closeURL"/>
+          <include name="AllValidationCheck"/>
           <include name="openUrl"/>
+          <include name="closeURL"/>
           <include name="LaunchUrl"/>
           <include name="closebrowser"/>
-          <include name="GetContact"/>
         </methods>
-      </class> <!-- com.cms.testcases.Contact_E2E_Flow4 -->
+      </class> <!-- com.cms.testcases.TeamTest -->
     </classes>
-  </test> <!-- Test1(failed) -->
+  </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

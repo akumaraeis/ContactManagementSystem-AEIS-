@@ -51,11 +51,11 @@ public class Utility extends BaseTest {
 //	        loginButton.click();
 	    }
 	  
-	public static void ExplicitWait2(WebElement ele)
-{
-	WebDriverWait wait = new WebDriverWait(driverR,Duration.ofSeconds(50));
-	wait.until(ExpectedConditions.elementToBeClickable(ele));
-}
+//	public static void ExplicitWait2(WebElement ele)
+//{
+//	WebDriverWait wait = new WebDriverWait(driverR,Duration.ofSeconds(50));
+//	wait.until(ExpectedConditions.elementToBeClickable(ele));
+//}
 
 	 public static void showTooltip(String message) {
 	        String script = "var tooltip = document.createElement('div');" +

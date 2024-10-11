@@ -4,14 +4,16 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>AEIS-DMS1</groupId>
-  <artifactId>AEIS-DMS1</artifactId>
+  <groupId>AEIS-CMS</groupId>
+  <artifactId>AEIS-CMS</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
-  <name>AEIS-DMS1</name>
+  <name>AEIS-CMS</name>
   <url>http://maven.apache.org</url>
 
   <properties>
+	   <maven.compiler.source>21</maven.compiler.source>
+       <maven.compiler.target>21</maven.compiler.target> 
  </properties>
 
   <dependencies>
@@ -19,7 +21,7 @@
 <dependency>
     <groupId>org.seleniumhq.selenium</groupId>
     <artifactId>selenium-java</artifactId>
-    <version>4.11.0</version>
+    <version>4.14.0</version>
 </dependency>
 <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 <dependency>
@@ -51,7 +53,7 @@
 <dependency>
     <groupId>io.github.bonigarcia</groupId>
     <artifactId>webdrivermanager</artifactId>
-    <version>5.3.2</version>
+    <version>5.5.0</version>
 </dependency>
 <!-- https://mvnrepository.com/artifact/org.testng/testng -->
 <dependency>

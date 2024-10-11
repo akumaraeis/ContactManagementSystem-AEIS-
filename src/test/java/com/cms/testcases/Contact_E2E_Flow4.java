@@ -67,7 +67,7 @@ public class Contact_E2E_Flow4 extends BaseTest{
 	public void VerifyAddNewContactFunctionality() throws IOException, InterruptedException
 	{
 	
-		try {			
+					
 			WebElement GoogleLogin = driverR.findElement(By.xpath("//*[name()='path' and contains(@d,'M215.103 0')]"));
 			act = new Actions(driverR);
 			act.moveToElement(GoogleLogin).perform();
@@ -230,6 +230,7 @@ public class Contact_E2E_Flow4 extends BaseTest{
 
 
 			//**********Adding Additional Detail*******************
+			try {
 			cp.SendAdditionalDetail();
 			cp.SendAdditionalFieldValue();		
 			driverR.findElement(By.xpath("//button[contains(@class,'btn-save')]//*[name()='svg']")).click();

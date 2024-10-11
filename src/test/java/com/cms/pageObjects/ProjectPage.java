@@ -177,6 +177,7 @@ public class ProjectPage {
 			Thread.sleep(1000);
 			postal.sendKeys(Code);
 		}
+	    
 	    public void selectStatus(String StateName) throws InterruptedException
 	  		{
 	  		    js = (JavascriptExecutor)driver2;
@@ -185,6 +186,7 @@ public class ProjectPage {
 	  			Select s2 = new Select(Status);
 				s2.selectByVisibleText(StateName);
 	  		}
+	    
 	    public void selectState(String StateName) throws InterruptedException
   		{
   		    js = (JavascriptExecutor)driver2;

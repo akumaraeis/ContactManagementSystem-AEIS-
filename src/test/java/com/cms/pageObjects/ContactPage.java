@@ -1,5 +1,6 @@
 package com.cms.pageObjects;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -12,7 +13,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.cms.utility.Utility;
 
@@ -21,7 +24,7 @@ public class ContactPage {
 	public static WebDriver driver2;
 	public static JavascriptExecutor js ;
 	public  Actions act;
-	
+
 	@FindBy(xpath="//div[@class='flex flex-row']//h2[contains(text(),'Active Contacts')]")
 	private WebElement ActiveContact ;
 	
@@ -201,6 +204,10 @@ public class ContactPage {
 	
 	@FindBy(xpath="//*[@class=\\\"flex justify-end w-full\\\"]//div")
 	private WebElement editimageBtn;
+	
+	@FindBy(xpath="//li[contains(@class,'hover:bg-violet-500 hover:text-white px-1 py-1 cursor-pointer w-full')]")
+	private WebElement CertificateNumber2;
+	
 //**********Constructor creation*******************************	
 	    public ContactPage(WebDriver driverR)
 		{
@@ -497,16 +504,23 @@ public class ContactPage {
 	  public void SendCertification() throws InterruptedException
 		{
 		  Utility.showCallout("Certification name Entered Using Automation Script", Certification);
-			Certification.sendKeys("AEIS Ferrite Number Test");
+			Certification.sendKeys("AEIS");
 			Thread.sleep(2000);
-			WebElement CertificationOption = driver2.findElement(By.xpath("//li[contains(@class,'hover:bg-violet-500 hover:text-white px-1 py-1 cursor-pointer w-full')]"));
-			Utility.ExplicitClickWait(CertificationOption);
-//			CertificationOption.click();
-		} 
+			WebDriverWait wait2 = new WebDriverWait(driver2, Duration.ofSeconds(10));
+			 WebElement firstOption = wait2.until(
+			            ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[contains(@class,\"w-full overflow-y-auto max-h-32\")]/li[1]"))
+			        );
+
+			        // Click the first option
+			        firstOption.click();
+			        Thread.sleep(2000);
+			    }
+		
 	  
 	  public void SendCertificateNumber() throws InterruptedException
 		{
-			driver2.findElement(By.xpath("//li[contains(@class,'hover:bg-violet-500 hover:text-white px-1 py-1 cursor-pointer w-full')]")).click();
+			
+//		  driver2.findElement(By.xpath("//li[contains(@class,'hover:bg-violet-500 hover:text-white px-1 py-1 cursor-pointer w-full')]"));
 			Utility.showCallout("Certification Number Entered Using Automation Script", certificateNumber);
 			certificateNumber.sendKeys("CERT/2024/65231");
 			Thread.sleep(2000);
@@ -528,7 +542,9 @@ public class ContactPage {
 		} 
 	  public void ClickonSubmit() throws InterruptedException
 			{
-			driver2.findElement(By.xpath("//button[normalize-space()='Submit']")).click();
+//			driver2.findElement(By.xpath("//button[normalize-space()='Submit']")).click();
+			Utility.showCallout("Click On Submit Button Using Automation Script", Submitbtn);
+			Submitbtn.click();
 			Thread.sleep(2000);
 			} 
 	  public void SelectQualificationText() throws InterruptedException

@@ -4,7 +4,6 @@
 			<listeners>
 		<listener class-name="com.cms.listener.Listener"/>
 	</listeners>
-
   <test thread-count="5" name="Test">
 	  <parameter name="browser" value="chrome"/>
     <classes>

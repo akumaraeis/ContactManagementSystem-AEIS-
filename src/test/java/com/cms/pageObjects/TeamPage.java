@@ -11,10 +11,15 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import com.cms.utility.Utility;
+
 public class TeamPage {
 	
 	public static WebDriver driver2;
 	public static JavascriptExecutor js ;
+	
+	@FindBy(xpath="//h2[normalize-space()='Teams']")
+	private WebElement Team ;
 	
 	@FindBy(xpath="//button[normalize-space()='Add New Team']")
 	private WebElement addnewTeam ;
@@ -66,12 +71,22 @@ public class TeamPage {
 	    	
 	    }
 //************** Method Declaration *************************************
+	  
+	    public void ClickonTeam() throws InterruptedException
+		{
+		    js = (JavascriptExecutor)driver2;
+			js.executeScript("arguments[0].setAttribute('style','background:violet;border:40px solid green;')",Team );
+			Thread.sleep(1000);
+			Utility.ExplicitWait(Team);
+			Team.click();
+		}
 	    
 	    public void ClickonAddnewTeam() throws InterruptedException
 		{
 		    js = (JavascriptExecutor)driver2;
 			js.executeScript("arguments[0].setAttribute('style','background:violet;border:40px solid green;')",addnewTeam );
 			Thread.sleep(1000);
+			Utility.ExplicitWait(Team);
 			addnewTeam.click();
 		}
 	    
@@ -80,6 +95,7 @@ public class TeamPage {
 		    js = (JavascriptExecutor)driver2;
 			js.executeScript("arguments[0].setAttribute('style','background:yellow;border:4px solid green;')",teamName );
 			Thread.sleep(1000);
+			Utility.ExplicitWait(teamName);
 			teamName.sendKeys(Team+ timestamp());
 			return Team+ timestamp();
 		}
@@ -103,6 +119,7 @@ public class TeamPage {
 	 		    js = (JavascriptExecutor)driver2;
 	 			js.executeScript("arguments[0].setAttribute('style','background:violet;border:40px solid green;')",submit );
 	 			Thread.sleep(1000);
+	 			Utility.ExplicitWait(submit);
 	 			submit.click();
 	 		}
 	   
@@ -119,6 +136,7 @@ public class TeamPage {
 		    js = (JavascriptExecutor)driver2;
 			js.executeScript("arguments[0].setAttribute('style','background:yellow;border:4px solid green;')",searchTeamName );
 			Thread.sleep(1000);
+			Utility.ExplicitWait(searchTeamName);
 			searchTeamName.sendKeys(Team);
 			return Team;
 		}
@@ -128,6 +146,7 @@ public class TeamPage {
  			js.executeScript("arguments[0].setAttribute('style','background:violet;border:40px solid green;')",ViewBtn );
  			Thread.sleep(1000);
  			js.executeScript("arguments[0].click()", ViewBtn);
+ 			Utility.ExplicitWait(ViewBtn);
  			ViewBtn.click();
  		}
 	    public void ClickonAddNewMemberBtn() throws InterruptedException
@@ -135,6 +154,7 @@ public class TeamPage {
 	 		    js = (JavascriptExecutor)driver2;
 	 			js.executeScript("arguments[0].setAttribute('style','background:violet;border:40px solid green;')",addNewMember );
 	 			Thread.sleep(1000);
+	 			Utility.ExplicitWait(addNewMember);
 	 			addNewMember.click();
 	 		}
 	    public void SendContactName(String CntctName) throws InterruptedException
@@ -158,6 +178,7 @@ public class TeamPage {
  			Select s2 = new Select(ContactRole);
  			s2.selectByIndex(1);
  			Thread.sleep(1000);
+ 			Utility.ExplicitWait(submit);
  			submit.click();
  		}
 	    
